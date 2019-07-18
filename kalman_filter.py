@@ -14,27 +14,28 @@ class KalmanFilter(object):
 		self.x = float('nan')
 		self.cov = 0.0
 
-	def predict(self, u = 0):
+	def __predict(self, u = 0):
 		return (self.A * float(self.x)) + (self.B * u)
 
-	def uncertainty(self):
+	def __uncertainty(self):
 		return ((self.A * float(self.cov)) * self.A) + self.R
 
-	def isNaN(self, num):
+	def __isNaN(self, num):
 		return num != num
 
 	def filter(self, measurement, u=0):
-		if (self.isNaN(self.x)):
+		if (self.__isNaN(self.x)):
 			self.x = (1 / self.C) * measurement
 			self.cov = (1 / self.C) * self.Q * (1 / self.C)
 		else:
-			predX = self.predict(u)
-			predCov = self.uncertainty()
+			# prediction & uncertainty
+			predX = self.__predict(u)
+			predCov = self.__uncertainty()
 
-			# Kalman Gain
+			# Kalman gain
 			k_gain = predCov * self.C * (1 / ((self.C * predCov * self.C) + self.Q))
 
-			# Correction
+			# correction
 			self.x = predX + k_gain * (measurement - (self.C * predX))
 			self.cov = predCov - (k_gain * self.C * predCov)
 
