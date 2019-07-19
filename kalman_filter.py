@@ -3,9 +3,19 @@
 
 class KalmanFilter(object):
 
-	def __init__(self, r, q, a=1, b=0, c=1): 
+	def __init__(self, r, q, a=1, b=0, c=1):
+		# R models the process noise and describes how noisy a system internally is.
+		# How much noise can be expected from the system itself? 
+		# When a system is constant R can be set to a (very) low value.
 		self.R = r 
+
+		# Q resembles the measurement noise. 
+		# How much noise is caused by the measurements? 
+		# When it's expected that the measurements will contain most of the noise, 
+		# it makes sense to set this parameter to a high number (especially in comparison to the process noise).
 		self.Q = q
+
+		# Usually you make an estimate of R and Q based on measurements or domain knowledge.<s<s
 		
 		self.A = a
 		self.B = b
