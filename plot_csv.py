@@ -21,8 +21,13 @@ def plot_csv(filename):
 	# plt.show()
 
 def main():
-	plot_csv('rssi_1')
-	plot_csv('rssi_2')
+	plot_csv('rssi_10:A2:EF:30:0C:03')
+	plot_csv('rssi_30:1B:C8:DE:D1:75')
+	plot_csv('rssi_5A:49:CD:F7:F0:CA')
+	plot_csv('rssi_76:FD:71:07:9B:42')
+	plot_csv('rssi_84:C0:EF:E0:55:B9')
+	plot_csv('rssi_88:C6:26:AE:08:C7')
+	plot_csv('rssi_88:C6:26:AE:08:C7')
 	
 
 if __name__ == '__main__':
