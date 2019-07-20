@@ -1,7 +1,13 @@
 # This Kalman Filter is based on the implementation from Wouter Bulten. 
 # https://github.com/wouterbulten/kalmanjs/blob/master/contrib/java/KalmanFilter.java
 
-class KalmanFilter(object):
+def square(x):
+	return x * x
+
+def isNaN(num):
+	return num != num
+
+class KalmanFilter:
 
 	def __init__(self, r, q, a=1, b=0, c=1):
 		# R models the process noise and describes how noisy a system internally is.
@@ -25,28 +31,24 @@ class KalmanFilter(object):
 		self.cov = 0.0
 
 	def __predict(self, u = 0):
-		return (self.A * float(self.x)) + (self.B * u)
+		return (self.A * self.x) + (self.B * u)
 
 	def __uncertainty(self):
-		return ((self.A * float(self.cov)) * self.A) + self.R
+		return (square(self.A) * self.cov) + self.R
 
-	def __isNaN(self, num):
-		return num != num
-
-	def filter(self, measurement, u=0):
-		if (self.__isNaN(self.x)):
-			self.x = (1 / self.C) * measurement
-			self.cov = (1 / self.C) * self.Q * (1 / self.C)
+	def filter(self, signal, u=0):
+		if isNaN(self.x):
+			self.x = (1 / self.C) * signal
+			self.cov = square(1 / self.C) * self.Q
 		else:
-			# prediction & uncertainty
-			predX = self.__predict(u)
-			predCov = self.__uncertainty()
+			prediction = self.__predict(u)
+			uncertainty = self.__uncertainty()
 
 			# Kalman gain
-			k_gain = predCov * self.C * (1 / ((self.C * predCov * self.C) + self.Q))
+			k_gain = uncertainty * self.C * (1 / ((square(self.C) * uncertainty) + self.Q))
 
 			# correction
-			self.x = predX + k_gain * (measurement - (self.C * predX))
-			self.cov = predCov - (k_gain * self.C * predCov)
+			self.x = prediction + k_gain * (signal - (self.C * prediction))
+			self.cov = uncertainty - (k_gain * self.C * uncertainty)
 
 		return self.x
