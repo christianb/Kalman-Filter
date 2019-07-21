@@ -1,6 +1,3 @@
-# This Kalman Filter is based on the implementation from Wouter Bulten. 
-# https://github.com/wouterbulten/kalmanjs/blob/master/contrib/java/KalmanFilter.java
-
 def square(x):
 	return x * x
 
