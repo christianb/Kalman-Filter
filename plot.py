@@ -57,20 +57,21 @@ def plot_test3(filename, path, out_path):
 	rssi = data[1]
 	average = data[2]
 	kalman = data[3]
+	# accumulated = data[4]
 
-	size = len(timestamp)
-	print("size: ", size)
+	# size = len(timestamp)
+	# print("size: ", size)
 	
-	start = timestamp[0]
-	last = timestamp[size-1]
+	# start = timestamp[0]
+	# last = timestamp[size-1]
 
-	durationInMs = (last - start)
+	# durationInMs = (last - start)
 
 	# Get current size
 	fig_size = plt.rcParams["figure.figsize"]
  
 	# Prints: [8.0, 6.0]
-	print("Current size:", fig_size)
+	# print("Current size:", fig_size)
 
 	# Set figure width to 12 and height to 9
 	fig_size[0] = 15
@@ -81,6 +82,7 @@ def plot_test3(filename, path, out_path):
 	plt.plot(timestamp, rssi, 'bo', label='RSSI')
 	plt.plot(timestamp, average, 'g', label='average')
 	plt.plot(timestamp, kalman, 'r', label='kalman')
+	# plt.plot(timestamp, accumulated, 'orange', label='accumulated')
 	plt.legend()
 	# plt.show()
 	out_name = filename+".png"
