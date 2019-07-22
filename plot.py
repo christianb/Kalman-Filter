@@ -20,13 +20,13 @@ def plot_csv(filename):
 	plt.savefig("plots/"+out_name)
 	# plt.show()
 
-def plot(raw, kalman, filename, title):
+def plot(raw, average, kalman, filename, title):
 	x_axis = np.arange(0, len(raw), 1)
 	
-	plt.figure()
 	plt.title(title)
 	plt.ylabel("RSSI in dB")
-	plt.plot(x_axis, raw, 'bo', label='raw')
+	plt.plot(x_axis, raw, 'bo', label='rssi')
+	plt.plot(x_axis, average, 'g', label='average')
 	plt.plot(x_axis, kalman, 'r', label='kalman')
 	plt.legend()
 	plt.savefig(filename)
