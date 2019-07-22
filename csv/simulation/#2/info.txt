@@ -1,5 +1,0 @@
-Kalman, R: 0.01, Q: 3
-Average: minFilter = 1f
-         maxFilter = 2f
-         minTime = 3000L
-         maxTime = 8000L

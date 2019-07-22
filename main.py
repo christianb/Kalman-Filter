@@ -1,4 +1,4 @@
-from plot import plot
+from plot import plot_test3
 from kalman_filter import KalmanFilter
 import numpy as np
 
@@ -8,15 +8,20 @@ from os.path import isfile, join
 def loadAndPlot(filename, path):
 	rssi,average,kalman = np.loadtxt(path+filename, unpack = False, delimiter=',')
 	title = "R: 0.01, Q: 3, A: 1, B: 0, C: 1"
-	plot(rssi, average,kalman, "./plots/rssi_walking_around_3min/"+filename+".png", title)
+	# plot(rssi, average,kalman, "./plots/xample/"+filename+".png", title)
 
 def main():
-	path='./csv/rssi_walking_around_3min/'
+	path='./csv/simulation/#2/'
+	out_path = './plots/simulation/#2/'
 	onlyfiles = [f for f in listdir(path) if isfile(join(path, f))]
 
 	for f in onlyfiles:
-		print(f)
-		loadAndPlot(f, path)
+		print(f, path)
+		# loadAndPlot(f, path)
+		plot_test3(f, path, out_path)
+
+	# plot_test()                                          
+	# plot_test3("csv/rssi_60_sec/rssi_38:F9:D3:9B:6E:1E.csv")
 	
 	# rssi = np.loadtxt("rssi_2.csv", unpack = False, delimiter=',')
 
@@ -35,7 +40,7 @@ def main():
 
 	# kalman = KalmanFilter(R, Q, A, B, C)
 	
-	g = []
+	# g = []
 	#for x in range(len(rssi)):
 		#g.append(kalman.filter(rssi[x]))
    
