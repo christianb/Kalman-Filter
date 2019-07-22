@@ -11,8 +11,8 @@ def loadAndPlot(filename, path):
 	# plot(rssi, average,kalman, "./plots/xample/"+filename+".png", title)
 
 def main():
-	path='./csv/simulation/#5/'
-	out_path = './plots/simulation/#5/'
+	path='./csv/simulation/#8/'
+	out_path = './plots/simulation/#8/'
 	onlyfiles = [f for f in listdir(path) if isfile(join(path, f))]
 
 	for f in onlyfiles:
