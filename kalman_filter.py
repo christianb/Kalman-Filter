@@ -20,16 +20,18 @@ class KalmanFilter:
 
 		# Usually you make an estimate of R and Q based on measurements or domain knowledge.
 		
-		self.A = a
-		self.B = b
-		self.C = c
+		self.A = a # State vector
+		self.B = b # Control vector
+		self.C = c # Measurement vector
 
-		self.x = float('nan')
+		self.x = float('nan') # estimated signal without noise
 		self.cov = 0.0
 
+	# Predict next value
 	def __predict(self, u = 0):
 		return (self.A * self.x) + (self.B * u)
 
+	# uncertainty of filter
 	def __uncertainty(self):
 		return (square(self.A) * self.cov) + self.R
 
