@@ -14,17 +14,17 @@ class KalmanFilter(private val R: Float,
     private fun uncertainty(): Float = (square(A) * cov) + R
 
     fun filter(signal: Float, u: Float = 0.0f): Float {
-        val x = this.x
+        val x: Float? = this.x
 
         if (x == null) {
             this.x = (1 / C) * signal
             cov = square(1 / C) * Q
         } else {
-            val prediction = predict(x, u)
-            val uncertainty = uncertainty()
+            val prediction: Float = predict(x, u)
+            val uncertainty: Float = uncertainty()
 
             // kalman gain
-            val k_gain = uncertainty * C * (1 / ((square(C) * uncertainty) + Q))
+            val k_gain: Float = uncertainty * C * (1 / ((square(C) * uncertainty) + Q))
 
             // correction
             this.x = prediction + k_gain * (signal - (C * prediction))
