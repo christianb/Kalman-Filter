@@ -18,7 +18,7 @@ class KalmanFilter:
 		# it makes sense to set this parameter to a high number (especially in comparison to the process noise).
 		self.Q = q
 
-		# Usually you make an estimate of R and Q based on measurements or domain knowledge.<s<s
+		# Usually you make an estimate of R and Q based on measurements or domain knowledge.
 		
 		self.A = a
 		self.B = b
